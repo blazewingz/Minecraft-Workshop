@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1b1510">
+  <meta name="description" content="A Java and Bedrock Minecraft anvil-order optimizer. Find low-cost enchanting sequences and reduce prior-work penalties.">
+  <title>Enchanting Order Optimizer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23231a13'/%3E%3Cpath d='M17 15h30v9H36v8h12v9H36v8h11v10H17V15Z' fill='%23999'/%3E%3Cpath d='M13 9h38v8H13z' fill='%23666'/%3E%3Cpath d='M25 39h14v8H25z' fill='%234c4c4c'/%3E%3Cpath d='M22 47h20l-3 10H25z' fill='%23707070'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div>
+      <div class="eyebrow">ANVIL WORKSHOP</div>
+      <h1>Enchanting Order Optimizer</h1>
+    </div>
+    <div class="edition-chip" id="editionChip">JAVA</div>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls-panel">
+      <div class="panel-heading">
+        <div>
+          <div class="section-kicker">CONFIGURE</div>
+          <h2>Build your enchant</h2>
+        </div>
+        <button class="ghost-btn" id="loadExample">Load example</button>
+      </div>
+
+      <div class="control-grid">
+        <label class="field">
+          <span>Edition</span>
+          <select id="edition">
+            <option value="java">Java Edition</option>
+            <option value="bedrock">Bedrock Edition</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Target item</span>
+          <select id="targetItem"></select>
+        </label>
+        <label class="field">
+          <span>Existing anvil uses</span>
+          <input id="targetWork" type="number" min="0" max="6" value="0" inputmode="numeric">
+        </label>
+        <label class="field field-wide">
+          <span>Optimization</span>
+          <select id="objective">
+            <option value="xp">Least XP spent</option>
+            <option value="work">Lowest final work penalty</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="subpanel">
+        <div class="subpanel-heading">
+          <div>
+            <div class="section-kicker">STARTING ITEM</div>
+            <h3>Enchantments already on the target</h3>
+          </div>
+          <button class="small-btn" id="addTargetEnchant">+ Add</button>
+        </div>
+        <div id="targetEnchants" class="rows empty-state">None — starting from a clean item.</div>
+      </div>
+
+      <div class="subpanel">
+        <div class="subpanel-heading">
+          <div>
+            <div class="section-kicker">SACRIFICES</div>
+            <h3>Enchanted books</h3>
+          </div>
+          <button class="small-btn" id="addBook">+ Add book</button>
+        </div>
+        <div class="helper-text">Each row represents one physical book. The solver is allowed to merge books together before applying them to the item.</div>
+        <div id="books" class="rows"></div>
+        <div class="book-footer">
+          <span id="bookCount">0 / 8 books</span>
+          <span>Exact search up to 8 books.</span>
+        </div>
+      </div>
+
+      <div class="action-row">
+        <button class="primary-btn" id="optimize"><span class="hammer-icon">⚒</span> Find optimal order</button>
+        <button class="ghost-btn" id="reset">Reset</button>
+      </div>
+      <div id="status" class="status" aria-live="polite"></div>
+    </section>
+
+    <section class="panel results-panel" id="resultsPanel">
+      <div class="panel-heading result-heading">
+        <div>
+          <div class="section-kicker">RESULT</div>
+          <h2 id="resultTitle">Ready for the anvil</h2>
+        </div>
+        <div class="result-badge" id="resultBadge">WAITING</div>
+      </div>
+
+      <div class="metric-grid" id="metrics">
+        <div class="metric"><span>LEVELS SPENT</span><strong>—</strong></div>
+        <div class="metric"><span>FINAL PWP</span><strong>—</strong></div>
+        <div class="metric"><span>MAX STEP</span><strong>—</strong></div>
+      </div>
+
+      <div class="plan-box">
+        <div class="plan-box-heading">
+          <div>
+            <div class="section-kicker">STEP-BY-STEP</div>
+            <h3>Anvil operations</h3>
+          </div>
+          <span class="plan-note" id="planNote">Your result will appear here.</span>
+        </div>
+        <div id="steps" class="steps empty-state large">Add at least one enchanted book, then run the optimizer.</div>
+      </div>
+
+      <div id="explanation" class="explanation hidden"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Fan-made tool · not affiliated with Mojang or Microsoft.</span>
+    <span><a href="https://minecraft.wiki/w/Anvil_mechanics" target="_blank" rel="noreferrer">Mechanics reference ↗</a></span>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
