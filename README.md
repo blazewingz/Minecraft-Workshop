@@ -1,17 +1,8 @@
 # Minecraft Enchanting Order Optimizer
 
-A static GitHub Pages tool for finding efficient Minecraft anvil orders, with separate Java and Bedrock rule handling.
+A static GitHub Pages tool for finding efficient Minecraft anvil orders, with separate Java and Bedrock rule handling
 
-## Deploy to GitHub Pages
-
-1. Put the contents of this folder in the root of a GitHub repository.
-2. In GitHub, open **Settings → Pages**.
-3. Set the source to **Deploy from a branch**, choose your main branch, and choose `/ (root)`.
-4. Save. GitHub Pages should serve `index.html` directly.
-
-There is no build step and no backend.
-
-## What this first version does
+## What does this ACTUALLY do?
 
 - Java Edition and Bedrock Edition are switchable.
 - Calculates prior-work penalties as `2^n - 1`.
@@ -27,11 +18,5 @@ There is no build step and no backend.
 This is intentionally focused on enchantment ordering. It does not yet model durability repair, material repair, renaming, damaged-item states, or arbitrary item-to-item equipment sacrifices. Those can be added to the same simulation engine without changing the page architecture.
 
 The current data includes the modern vanilla enchantments represented by the planner, including the spear's Lunge enchantment and the mace's Density, Breach, and Wind Burst.
-
-## Mechanics references used while building this version
-
-- Minecraft Wiki mirror, **Anvil mechanics**: https://theminecraftwiki.com/wiki/anvil-mechanics/
-- Mojang / Minecraft Feedback, **Java Edition 1.21.11** spear details: https://www.minecraft.net/en-us/article/minecraft-java-edition-1-21-11
-- Mojang / Minecraft Feedback, **Bedrock Edition 1.21.130** spear details: https://feedback.minecraft.net/hc/en-us/articles/41446685014669-Minecraft-Bedrock-Edition-1-21-130-Mounts-of-Mayhem
 
 Minecraft is a trademark of Mojang Synergies AB. This project is fan-made and is not affiliated with Mojang or Microsoft.
