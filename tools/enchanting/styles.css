@@ -198,3 +198,9 @@ button { font: inherit; }
   .step-cost { grid-column: 2; text-align: left; }
   .footer { flex-direction: column; padding-bottom: 18px; }
 }
+/* Workshop suite additions */
+.nav{display:flex;gap:8px;margin-left:14px;flex-wrap:wrap}.nav a{padding:9px 11px;font-size:11px;font-weight:800;color:#c8b8a7;border:1px solid #4d3e30;background:#1c1713;text-transform:uppercase;letter-spacing:.08em}.nav a.active,.nav a:hover{border-color:#876747;color:#f0e5d5;background:#281f18;text-decoration:none}
+[data-tilt]{transform-style:preserve-3d;will-change:transform;transition:transform .16s ease,box-shadow .16s ease}.brand-mark{cursor:pointer}
+@media(max-width:900px){.topbar{flex-wrap:wrap}.nav{order:4;width:100%;margin-left:0}}
+
+.tool-name{font-size:21px;margin:3px 0 0}.topbar{width:min(1240px,calc(100% - 34px));margin-inline:auto}.nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.nav a{border:1px solid #524437;background:#15110e;color:#9a9085;padding:8px 10px;font-size:9px;box-shadow:2px 2px 0 #050403}.nav a:hover,.nav a.active{border-color:#826a51;color:#eee5d8;background:#211913}.btn{border:1px solid #5f4d3d;background:#1c1713;color:#e8dfd2}.ui3d{transform-style:preserve-3d;will-change:transform}
