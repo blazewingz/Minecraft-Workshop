@@ -15,18 +15,18 @@
   <header class="topbar">
     <a href="../../" class="brand-mark" aria-label="Minecraft Tools home"><span></span><span></span><span></span></a>
     <div>
-      <div class="eyebrow">MINECRAFT WORKSHOP</div>
-      <div class="tool-name">Enchanting</div>
+      <div class="eyebrow">TOOL 01 · MINECRAFT WORKSHOP</div>
+      <h1>Enchanting Order Optimizer</h1>
     </div>
-    <div <nav class="nav"><a href="../../">Workshop</a><a class="active" href="./">Enchanting</a><a href="../armoury/">Armoury</a><a href="../banner/">Banner</a><a href="../nether/">Nether</a></nav>
+    <div class="edition-chip" id="editionChip">JAVA</div><nav class="nav"><a href="../../">Workshop</a><a class="active" href="./">Enchanting</a><a href="../armoury/">Armoury</a><a href="../banner/">Banner Editor</a></nav>
   </header>
 
   <main class="layout">
-    <section class="panel depth-ui controls-panel">
+    <section class="panel controls-panel" data-tilt>
       <div class="panel-heading">
         <div>
-          <div class="section-kicker">SETUP</div>
-          <h2>Enchanting</h2>
+          <div class="section-kicker">CONFIGURE</div>
+          <h2>Build your enchant</h2>
         </div>
         <button class="ghost-btn" id="loadExample">Load example</button>
       </div>
@@ -75,7 +75,7 @@
           </div>
           <button class="small-btn" id="addBook">+ Add book</button>
         </div>
-        
+        <div class="helper-text">Each row represents one physical book. The solver is allowed to merge books together before applying them to the item.</div>
         <div id="books" class="rows"></div>
         <div class="book-footer">
           <span id="bookCount">0 / 8 books</span>
@@ -90,7 +90,7 @@
       <div id="status" class="status" aria-live="polite"></div>
     </section>
 
-    <section class="panel depth-ui results-panel" id="resultsPanel">
+    <section class="panel results-panel" id="resultsPanel" data-tilt>
       <div class="panel-heading result-heading">
         <div>
           <div class="section-kicker">RESULT</div>
@@ -108,21 +108,22 @@
       <div class="plan-box">
         <div class="plan-box-heading">
           <div>
-            <div class="section-kicker">ORDER</div>
+            <div class="section-kicker">STEP-BY-STEP</div>
             <h3>Anvil operations</h3>
           </div>
           <span class="plan-note" id="planNote">Your result will appear here.</span>
         </div>
-        <div id="steps" class="steps empty-state large">No result</div>
+        <div id="steps" class="steps empty-state large">Add at least one enchanted book, then run the optimizer.</div>
       </div>
 
       <div id="explanation" class="explanation hidden"></div>
     </section>
   </main>
 
-<nav class="footer-nav">
-    <a class="btn ui3d" href="../../">Workshop</a><a class="btn ui3d" href="../armoury/">Armoury</a><a class="btn ui3d" href="../banner/">Banner</a><a class="btn ui3d" href="../nether/">Nether ↔ Overworld</a>
-  </nav>
+  <footer class="footer">
+    <span>Fan-made tool · not affiliated with Mojang or Microsoft.</span>
+    <span><a href="../../">← Back to Workshop</a></span>
+  </footer>
 
   <script src="data.js"></script>
   <script src="engine.js"></script>

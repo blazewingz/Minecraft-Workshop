@@ -137,7 +137,7 @@
     metricsEl.innerHTML = `<div class="metric"><span>LEVELS SPENT</span><strong>—</strong></div><div class="metric"><span>FINAL PWP</span><strong>—</strong></div><div class="metric"><span>MAX STEP</span><strong>—</strong></div>`;
     planNote.textContent = 'Your result will appear here.';
     stepsEl.className = 'steps empty-state large';
-    stepsEl.textContent = 'No result';
+    stepsEl.textContent = 'Add at least one enchanted book, then run the optimizer.';
     explanation.classList.add('hidden');
   }
 
@@ -145,7 +145,7 @@
     try {
       setStatus('Searching legal anvil trees…');
       const input = collect();
-      if (!input.books.length) throw new Error('No enchanted books.');
+      if (!input.books.length) throw new Error('Add at least one enchanted book.');
       const result = engine.solve(input);
       render(result);
     } catch (err) {

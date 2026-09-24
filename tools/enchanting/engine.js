@@ -142,7 +142,7 @@
     const data = DATA();
     if (!data) throw new Error('Enchantment data is unavailable.');
     const { edition, itemType, targetWork, targetEnchants, books, objective } = input;
-    if (!books.length) throw new Error('No enchanted books.');
+    if (!books.length) throw new Error('Add at least one enchanted book.');
     if (books.length > 8) throw new Error('This exact solver supports up to 8 books.');
 
     const target = {
