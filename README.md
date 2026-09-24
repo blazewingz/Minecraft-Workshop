@@ -1,16 +1,17 @@
-# Minecraft Tools · Workshop
+# Minecraft Workshop
 
-A self-contained GitHub Pages mini-suite for Minecraft players.
+A plain-HTML/CSS/JS Minecraft tool suite for GitHub Pages.
 
 ## Tools
 
-- **Enchanting** — searches anvil merge orders for Java and Bedrock.
-- **Armoury** — builds a custom armour set from base materials, trim patterns and trim materials, with an interactive 3D preview.
+- `/tools/enchanting/` — Java/Bedrock anvil-order optimizer.
+- `/tools/armoury/` — smithing-template and armour-trim designer with Minecraft skin upload and armour-stand preview.
+- `/tools/banner/` — layered banner/loom editor with 16 dyes, 6 pattern layers and PNG export.
 
-## Deploy
+## GitHub Pages
 
-Place the repository contents on a GitHub Pages branch and serve the repository root. No build step or server is required.
+Put the contents of this folder at the repository root. Enable GitHub Pages from the root of the branch. No build step is required.
 
-The suite uses only local HTML/CSS/JavaScript.
+## Asset note
 
-Fan-made and unaffiliated with Mojang or Microsoft.
+The Armoury uses Minecraft smithing-template item sprites from the public MC Assets Explorer CDN for the template thumbnails. The site is fan-made and is not affiliated with Mojang or Microsoft.
