@@ -1,131 +1,49 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1b1510">
-  <meta name="description" content="A Java and Bedrock Minecraft anvil-order optimizer. Find low-cost enchanting sequences and reduce prior-work penalties.">
-  <title>Enchanting Order Optimizer</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23231a13'/%3E%3Cpath d='M17 15h30v9H36v8h12v9H36v8h11v10H17V15Z' fill='%23999'/%3E%3Cpath d='M13 9h38v8H13z' fill='%23666'/%3E%3Cpath d='M25 39h14v8H25z' fill='%234c4c4c'/%3E%3Cpath d='M22 47h20l-3 10H25z' fill='%23707070'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="page-grain" aria-hidden="true"></div>
-  <header class="topbar">
-    <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div>
-      <div class="eyebrow">ANVIL WORKSHOP</div>
-      <h1>Enchanting Order Optimizer</h1>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17120e"><meta name="description" content="Minecraft Tools — anvil planning, armour trimming and more.">
+<title>Minecraft Tools · Workshop</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23231a13'/%3E%3Cpath d='M10 14h44v12H10zM16 28h32v12H16zM22 42h20v12H22z' fill='%238b8278'/%3E%3Cpath d='M14 19h36v3H14zM20 33h24v3H20zM26 47h12v3H26z' fill='%23504a44'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="shared/site.css">
+<style>.workbench{height:245px;width:300px;position:relative;transform-style:preserve-3d;perspective:900px}.block{position:absolute;transform-style:preserve-3d;background:linear-gradient(135deg,#80684e,#443529);border:1px solid #9a7a58;box-shadow:0 16px 30px rgba(0,0,0,.35)}.block.a{width:92px;height:92px;left:34px;top:44px;transform:translateZ(36px) rotateZ(-2deg)}.block.b{width:92px;height:92px;left:150px;top:65px;transform:translateZ(8px) rotateZ(3deg)}.block.c{width:70px;height:70px;left:105px;top:116px;transform:translateZ(54px) rotateZ(-1deg);background:linear-gradient(135deg,#727777,#3e4141);border-color:#909696}.block::after{content:"";position:absolute;inset:12px;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 48%),repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 2px,transparent 2px 9px);opacity:.65}.spark{position:absolute;width:8px;height:8px;background:#d8b75f;box-shadow:0 0 16px #d8b75f;transform:rotate(45deg);animation:spark 2.8s infinite ease-in-out}.s1{left:94px;top:40px}.s2{left:195px;top:33px;animation-delay:.6s}.s3{left:65px;top:126px;animation-delay:1.15s}.s4{left:221px;top:144px;animation-delay:1.7s}@keyframes spark{0%,100%{opacity:.15;transform:scale(.75) rotate(45deg)}50%{opacity:1;transform:scale(1.15) rotate(45deg)}}
+</style>
+</head><body>
+<header class="site-shell topbar">
+  <div class="brand"><div class="brand-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M17 13h30v10H35v8h13v10H35v8h12v10H17V13Z" fill="#96928b"/><path d="M11 8h42v9H11z" fill="#66625c"/><path d="M24 41h17v9H24z" fill="#454541"/><path d="M21 50h23l-3 10H24z" fill="#77746e"/></svg></div><div><div class="eyebrow">THE MINECRAFT WORKSHOP</div><h1>Minecraft Tools</h1></div></div>
+  <div class="edition-chip">TOOLS</div>
+</header>
+<main class="site-shell">
+  <section class="panel depth-ui hero" data-tilt>
+    <div class="hero-copy">
+      <div class="kicker">A SMALL BOX OF VERY SPECIFIC PROBLEMS</div>
+      <h2>Do the maths.<br>Wear the armour.</h2>
+      <p>A focused collection of Minecraft tools built to feel like they belong in the game: useful, fast, a little dramatic, and absolutely no dashboard sludge.</p>
+      <div class="tag-row"><span class="tag">JAVA</span><span class="tag">BEDROCK</span><span class="tag">VANILLA-FIRST</span><span class="tag">NO ACCOUNTS</span></div>
+      <div class="cta-row"><a class="primary" href="tools/enchanting/">Open Enchanting Planner ↗</a><a class="ghost" href="tools/armoury/">Open Armoury ↗</a></div>
     </div>
-    <div class="edition-chip" id="editionChip">JAVA</div>
-  </header>
+    <div class="workbench" aria-hidden="true"><div class="block a"></div><div class="block b"></div><div class="block c"></div><span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span><span class="spark s4"></span></div>
+  </section>
 
-  <main class="layout">
-    <section class="panel controls-panel">
-      <div class="panel-heading">
-        <div>
-          <div class="section-kicker">CONFIGURE</div>
-          <h2>Build your enchant</h2>
-        </div>
-        <button class="ghost-btn" id="loadExample">Load example</button>
-      </div>
+  <div style="height:16px"></div>
+  <section class="grid tools">
+    <a class="panel depth-ui tool-card" data-tilt href="tools/enchanting/">
+      <div class="tool-art"><svg viewBox="0 0 110 125" width="92" height="105" aria-hidden="true"><g transform="skewY(-5)"><path d="M20 24h70v22H20z" fill="#8d8880" stroke="#4d4a46" stroke-width="3"/><path d="M36 46h36v34H36z" fill="#6e6a65" stroke="#45423e" stroke-width="3"/><path d="M28 79h52l-7 29H35z" fill="#77736d" stroke="#44423e" stroke-width="3"/><path d="M39 88h30" stroke="#a09c96" stroke-width="3" opacity=".45"/></g></svg></div>
+      <div><div class="kicker">TOOL 01 · ANVIL WORKSHOP</div><h3>Enchanting Order Optimizer</h3><p>Searches legal anvil merge trees to reduce level cost and keep the prior-work penalty under control.</p><div class="tool-meta">Java + Bedrock · exact search</div></div>
+    </a>
+    <a class="panel depth-ui tool-card" data-tilt href="tools/armoury/">
+      <div class="tool-art"><svg viewBox="0 0 110 125" width="88" height="105" aria-hidden="true"><path d="M29 18 55 7l26 11-5 31-8 10v44H42V59l-8-10z" fill="#3d79a8" stroke="#9fc7e8" stroke-width="3"/><path d="M33 39h44M42 60h26M43 82h24" stroke="#d6ad5c" stroke-width="6" opacity=".9"/><path d="M42 104h26" stroke="#b8d8f0" stroke-width="3"/></svg></div>
+      <div><div class="kicker">TOOL 02 · ARMOURY</div><h3>Smithing Template Forge</h3><p>Build the armour set you actually want. Mix base materials, trim patterns and trim materials, then inspect it in a little 3D mannequin.</p><div class="tool-meta">18 trims · 11 materials · 3D preview</div></div>
+    </a>
+  </section>
 
-      <div class="control-grid">
-        <label class="field">
-          <span>Edition</span>
-          <select id="edition">
-            <option value="java">Java Edition</option>
-            <option value="bedrock">Bedrock Edition</option>
-          </select>
-        </label>
-        <label class="field">
-          <span>Target item</span>
-          <select id="targetItem"></select>
-        </label>
-        <label class="field">
-          <span>Existing anvil uses</span>
-          <input id="targetWork" type="number" min="0" max="6" value="0" inputmode="numeric">
-        </label>
-        <label class="field field-wide">
-          <span>Optimization</span>
-          <select id="objective">
-            <option value="xp">Least XP spent</option>
-            <option value="work">Lowest final work penalty</option>
-          </select>
-        </label>
-      </div>
-
-      <div class="subpanel">
-        <div class="subpanel-heading">
-          <div>
-            <div class="section-kicker">STARTING ITEM</div>
-            <h3>Enchantments already on the target</h3>
-          </div>
-          <button class="small-btn" id="addTargetEnchant">+ Add</button>
-        </div>
-        <div id="targetEnchants" class="rows empty-state">None — starting from a clean item.</div>
-      </div>
-
-      <div class="subpanel">
-        <div class="subpanel-heading">
-          <div>
-            <div class="section-kicker">SACRIFICES</div>
-            <h3>Enchanted books</h3>
-          </div>
-          <button class="small-btn" id="addBook">+ Add book</button>
-        </div>
-        <div class="helper-text">Each row represents one physical book. The solver is allowed to merge books together before applying them to the item.</div>
-        <div id="books" class="rows"></div>
-        <div class="book-footer">
-          <span id="bookCount">0 / 8 books</span>
-          <span>Exact search up to 8 books.</span>
-        </div>
-      </div>
-
-      <div class="action-row">
-        <button class="primary-btn" id="optimize"><span class="hammer-icon">⚒</span> Find optimal order</button>
-        <button class="ghost-btn" id="reset">Reset</button>
-      </div>
-      <div id="status" class="status" aria-live="polite"></div>
-    </section>
-
-    <section class="panel results-panel" id="resultsPanel">
-      <div class="panel-heading result-heading">
-        <div>
-          <div class="section-kicker">RESULT</div>
-          <h2 id="resultTitle">Ready for the anvil</h2>
-        </div>
-        <div class="result-badge" id="resultBadge">WAITING</div>
-      </div>
-
-      <div class="metric-grid" id="metrics">
-        <div class="metric"><span>LEVELS SPENT</span><strong>—</strong></div>
-        <div class="metric"><span>FINAL PWP</span><strong>—</strong></div>
-        <div class="metric"><span>MAX STEP</span><strong>—</strong></div>
-      </div>
-
-      <div class="plan-box">
-        <div class="plan-box-heading">
-          <div>
-            <div class="section-kicker">STEP-BY-STEP</div>
-            <h3>Anvil operations</h3>
-          </div>
-          <span class="plan-note" id="planNote">Your result will appear here.</span>
-        </div>
-        <div id="steps" class="steps empty-state large">Add at least one enchanted book, then run the optimizer.</div>
-      </div>
-
-      <div id="explanation" class="explanation hidden"></div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <span>Fan-made tool · not affiliated with Mojang or Microsoft.</span>
-    <span><a href="https://minecraft.wiki/w/Anvil_mechanics" target="_blank" rel="noreferrer">Mechanics reference ↗</a></span>
-  </footer>
-
-  <script src="js/data.js"></script>
-  <script src="js/engine.js"></script>
-  <script src="js/app.js"></script>
-</body>
-</html>
+  <div style="height:16px"></div>
+  <section class="tip-grid">
+    <div class="panel depth-ui tip" data-tilt><strong><span class="status-dot"></span>Nothing to install</strong><span>Every tool runs as plain HTML, CSS and JavaScript, so GitHub Pages can serve the whole thing directly.</span></div>
+    <div class="panel depth-ui tip" data-tilt><strong>Edition-aware</strong><span>Where Java and Bedrock rules matter, the tools keep them separated instead of pretending they are interchangeable.</span></div>
+    <div class="panel depth-ui tip" data-tilt><strong>Made for tinkering</strong><span>The UI is deliberately transparent: the data and logic live in readable files you can change in the repo.</span></div>
+  </section>
+</main>
+<footer class="footer"><span>Fan-made · not affiliated with Mojang or Microsoft.</span><span>Workshop v2</span></footer>
+<script src="shared/tilt.js"></script>
+</body></html>

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17120e"><meta name="description" content="Minecraft armor trim and smithing template designer.">
+<title>Armoury · Minecraft Tools</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23231a13'/%3E%3Cpath d='M15 13h34l8 9-8 10H15l-8-10z' fill='%236d7378'/%3E%3Cpath d='M18 31h28v22H18z' fill='%233f79a5'/%3E%3Cpath d='M19 40h26' stroke='%23d2ad63' stroke-width='5'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../../shared/site.css">
+<style>
+.armory-grid{display:grid;grid-template-columns:430px 1fr;gap:16px;padding-bottom:18px}.controls{padding:18px}.section-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:15px}.section-head h2{margin:3px 0 0;font-size:19px}.field{display:grid;gap:6px;margin-bottom:11px}.field span{font-size:11px;color:#aaa097;font-weight:800}.select,.toggle,.range{width:100%;background:#17130f;color:#f1eadf;border:1px solid #594938;padding:10px 11px;font:inherit;font-size:12px;outline:none}.select:focus,.toggle:focus{border-color:#9a714a;box-shadow:0 0 0 2px rgba(154,113,74,.16)}.armor-list{display:grid;gap:8px}.armor-row{padding:11px;background:#201a15;border:1px solid #4a3c30}.armor-row.active{border-color:#7f9c59;box-shadow:inset 3px 0 #7f9c59}.armor-row-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.armor-row h3{margin:0;font-size:14px}.armor-row small{color:#736b63;font-size:10px}.row-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.checkbox{display:flex;align-items:center;gap:7px;color:#9d948b;font-size:10px}.checkbox input{accent-color:#6e8e3b}.info-box{margin-top:12px;padding:12px;background:#1b1612;border:1px solid #45372c}.info-box strong{font-size:12px}.info-box p{font-size:10px;line-height:1.5;color:#8f8780;margin:6px 0 0}.preview-panel{padding:18px;min-height:740px;display:flex;flex-direction:column}.preview-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.preview-head h2{margin:3px 0 0}.preview-head p{font-size:10px;color:#756d65;margin:5px 0 0}.preview-stage{flex:1;min-height:570px;display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid #3e3329;background:radial-gradient(circle at 50% 34%,rgba(97,85,70,.17),transparent 44%),linear-gradient(180deg,#171310,#110e0c)}.preview-stage::before{content:"";position:absolute;bottom:63px;width:280px;height:50px;border-radius:50%;background:rgba(0,0,0,.42);filter:blur(15px)}.mannequin{width:360px;height:510px;position:relative;transform-style:preserve-3d;transform:rotateX(1deg) rotateY(-13deg);transition:transform .18s ease}.part{position:absolute;transform-style:preserve-3d;border:2px solid rgba(15,13,11,.88);box-shadow:inset 6px 5px rgba(255,255,255,.08),inset -8px -10px rgba(0,0,0,.24),0 10px 18px rgba(0,0,0,.28)}.face{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden}.face.front{transform:translateZ(14px)}.face.side{width:28px;right:-28px;transform-origin:left center;transform:rotateY(90deg)}.face.top{height:28px;top:-28px;transform-origin:bottom center;transform:rotateX(90deg)}.helmet{width:96px;height:96px;left:132px;top:32px;border-radius:15px 15px 9px 9px}.helmet .front{background:linear-gradient(135deg,var(--armor-light),var(--armor-mid));}.helmet .side{background:linear-gradient(90deg,var(--armor-mid),var(--armor-dark))}.helmet .top{background:var(--armor-light)}
+.chest{width:148px;height:165px;left:106px;top:126px;border-radius:12px 12px 8px 8px}.chest .front{background:linear-gradient(135deg,var(--armor-light),var(--armor-mid));}.chest .side{background:linear-gradient(90deg,var(--armor-mid),var(--armor-dark))}.chest .top{background:var(--armor-light)}
+.arm{width:42px;height:148px;top:138px}.arm.left{left:60px;transform:rotateZ(2deg) translateZ(5px)}.arm.right{left:258px;transform:rotateZ(-2deg) translateZ(5px)}.arm .front{background:linear-gradient(135deg,var(--armor-light),var(--armor-mid));}.arm .side{background:var(--armor-dark)}
+.leg{width:62px;height:166px;top:291px}.leg.left{left:112px}.leg.right{left:187px}.leg .front{background:linear-gradient(135deg,var(--armor-light),var(--armor-mid));}.leg .side{background:var(--armor-dark)}
+.boot{width:68px;height:42px;top:451px}.boot.left{left:105px}.boot.right{left:188px}.boot .front{background:linear-gradient(135deg,var(--armor-light),var(--armor-mid));}.boot .side{background:var(--armor-dark)}
+.trim-line{position:absolute;left:8px;right:8px;height:7px;background:var(--trim);box-shadow:0 0 9px var(--trim-glow),inset 0 0 0 1px rgba(255,255,255,.18);opacity:.93;z-index:3}.helmet .trim-line{top:52px}.chest .trim-line{top:54px}.arm .trim-line{top:65px}.leg .trim-line{top:68px}.boot .trim-line{top:18px}
+.motif{position:absolute;z-index:4;inset:0;display:grid;place-items:center;pointer-events:none}.motif svg{width:70%;height:70%;filter:drop-shadow(0 0 5px var(--trim-glow));opacity:.88}.chest .motif svg{width:62%;height:70%}.helmet .motif svg{width:55%;height:65%}.leg .motif svg,.boot .motif svg,.arm .motif svg{width:62%;height:58%}
+.control-bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px}.control-bar .small{min-width:112px}.glint{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(115deg,transparent 15%,rgba(255,255,255,.18) 32%,transparent 48%);transform:translateX(-110%)}.enchanted .glint{opacity:.75;animation:glint 2.5s infinite}.enchanted .part{filter:drop-shadow(0 0 5px rgba(171,132,237,.33))}.enchanted .motif svg{filter:drop-shadow(0 0 9px var(--trim-glow)) drop-shadow(0 0 6px rgba(171,132,237,.6))}@keyframes glint{0%{transform:translateX(-115%)}58%,100%{transform:translateX(120%)}}
+.pattern-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px;max-height:208px;overflow:auto;padding-right:3px}.pattern{padding:9px;background:#1d1713;border:1px solid #44372d;cursor:pointer;text-align:left}.pattern:hover,.pattern.selected{border-color:#8a6f4f;background:#2a2019}.pattern strong{display:block;font-size:10px}.pattern span{display:block;font-size:9px;color:#726a63;margin-top:3px}.mini-motif{height:28px;display:grid;place-items:center;margin-bottom:5px}.mini-motif svg{width:42px;height:25px;stroke:#d2ad63;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.mat-grid{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}.mat{width:28px;height:28px;border:1px solid #54463a;cursor:pointer;box-shadow:inset 0 1px rgba(255,255,255,.18),0 2px 0 #100d0a;position:relative}.mat::after{content:"";position:absolute;inset:5px;background:rgba(255,255,255,.10);border:1px solid rgba(0,0,0,.2)}.mat.selected{outline:2px solid #d4b66f;outline-offset:2px}.mat[data-disabled="true"]{opacity:.32;cursor:not-allowed}.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:11px}.legend-item{padding:9px;background:#1d1713;border:1px solid #44372d;font-size:9px;color:#857d75}.legend-item b{display:block;color:#c4b7a9;font-size:10px;margin-bottom:3px}
+@media(max-width:1040px){.armory-grid{grid-template-columns:1fr}.preview-panel{min-height:690px}.preview-stage{min-height:540px}.controls{display:grid;grid-template-columns:1fr 1fr;gap:14px}.controls .full{grid-column:1 / -1}.info-box{margin-top:0}}
+@media(max-width:680px){.controls{display:block}.preview-stage{min-height:485px}.mannequin{transform:scale(.82) rotateY(-13deg);transform-origin:center}.pattern-grid{grid-template-columns:repeat(2,1fr)}.legend{grid-template-columns:1fr 1fr}}
+</style></head>
+<body>
+<header class="site-shell topbar">
+  <div class="brand"><a class="brand-icon" href="../../" aria-label="Minecraft Tools home"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M13 15h38l6 8-8 10H15L7 23z" fill="#757a7f"/><path d="M17 33h30v21H17z" fill="#3e789f"/><path d="M18 42h28" stroke="#d2ad63" stroke-width="5"/></svg></a><div><div class="eyebrow">TOOL 02 · THE MINECRAFT WORKSHOP</div><h1>Armoury</h1></div></div>
+  <div class="edition-chip">SMITHING</div><nav class="nav"><a href="../../">Workshop</a><a href="../enchanting/">Enchanting</a><a class="active" href="./">Armoury</a></nav>
+</header>
+<main class="site-shell armory-grid">
+<section class="panel depth-ui controls" data-tilt>
+  <div class="section-head"><div><div class="kicker">FORGE A SET</div><h2>Smithing template generator</h2></div><button class="small" id="randomize">Roll set</button></div>
+  <div class="field full"><span>Selected armour piece</span><select class="select" id="pieceSelect"><option value="helmet">Helmet</option><option value="chestplate">Chestplate</option><option value="leggings">Leggings</option><option value="boots">Boots</option></select></div>
+  <div class="field full"><span>Base armour</span><select class="select" id="armorSelect"></select></div>
+  <div class="field full"><span>Trim pattern / smithing template</span><div class="pattern-grid" id="patternGrid"></div></div>
+  <div class="field full"><span>Trim material</span><div class="mat-grid" id="matGrid"></div></div>
+  <label class="checkbox full"><input id="enchantToggle" type="checkbox"> Make the set look enchanted</label>
+  <div class="info-box full" id="templateInfo"></div>
+  <div class="legend full"><div class="legend-item"><b>Template</b>Defines the pattern.</div><div class="legend-item"><b>Material</b>Defines the trim colour.</div><div class="legend-item"><b>Copy</b>7 diamonds + its template-specific ingredient.</div></div>
+  <div class="control-bar full"><button class="primary" id="applyAll">Use this combo on full set</button><button class="ghost" id="clearTrim">Clear selected piece</button></div>
+</section>
+<section class="panel depth-ui preview-panel" data-tilt>
+  <div class="preview-head"><div><div class="kicker">3D MANNEQUIN</div><h2 id="setName">Copperbound Explorer</h2><p>Move your mouse over the mannequin. Drag to spin it. The stage stays put.</p></div><div class="edition-chip">VANILLA</div></div>
+  <div class="preview-stage" id="stage">
+    <div class="mannequin" id="mannequin" aria-label="3D armour preview">
+      <div class="part helmet" data-piece="helmet"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div><div class="face top"></div><div class="glint"></div></div>
+      <div class="part arm left" data-piece="left-arm"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div></div>
+      <div class="part chest" data-piece="chestplate"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div><div class="face top"></div><div class="glint"></div></div>
+      <div class="part arm right" data-piece="right-arm"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div></div>
+      <div class="part leg left" data-piece="leggings-left"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div></div>
+      <div class="part leg right" data-piece="leggings-right"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div></div>
+      <div class="part boot left" data-piece="boots-left"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div></div>
+      <div class="part boot right" data-piece="boots-right"><div class="face front"><div class="motif"></div><div class="trim-line"></div></div><div class="face side"></div></div>
+    </div>
+  </div>
+  <div class="control-bar"><button class="small" id="spinLeft">↶ Rotate</button><button class="small" id="spinRight">Rotate ↷</button><button class="small" id="resetView">Reset view</button><span class="subtle" id="status" style="margin-left:auto;font-size:10px"></span></div>
+</section>
+</main>
+<footer class="footer"><span>Fan-made · not affiliated with Mojang or Microsoft.</span><a href="../../">← Back to Workshop</a></footer>
+<script>
+const PATTERNS=[
+ {id:'sentry',name:'Sentry',where:'Pillager Outpost',copy:'Terracotta',shape:'sentry'},
+ {id:'vex',name:'Vex',where:'Woodland Mansion',copy:'Cobblestone',shape:'vex'},
+ {id:'wild',name:'Wild',where:'Jungle Temple',copy:'Mossy Cobblestone',shape:'wild'},
+ {id:'coast',name:'Coast',where:'Shipwreck',copy:'Cobblestone',shape:'coast'},
+ {id:'dune',name:'Dune',where:'Desert Pyramid',copy:'Sandstone',shape:'dune'},
+ {id:'wayfinder',name:'Wayfinder',where:'Trail Ruins',copy:'Terracotta',shape:'wayfinder'},
+ {id:'raiser',name:'Raiser',where:'Trail Ruins',copy:'Terracotta',shape:'raiser'},
+ {id:'shaper',name:'Shaper',where:'Trail Ruins',copy:'Terracotta',shape:'shaper'},
+ {id:'host',name:'Host',where:'Trail Ruins',copy:'Terracotta',shape:'host'},
+ {id:'ward',name:'Ward',where:'Ancient City',copy:'Cobbled Deepslate',shape:'ward'},
+ {id:'silence',name:'Silence',where:'Ancient City',copy:'Cobbled Deepslate',shape:'silence'},
+ {id:'tide',name:'Tide',where:'Ocean Monument',copy:'Prismarine',shape:'tide'},
+ {id:'snout',name:'Snout',where:'Bastion Remnant',copy:'Blackstone',shape:'snout'},
+ {id:'rib',name:'Rib',where:'Nether Fortress',copy:'Netherrack',shape:'rib'},
+ {id:'eye',name:'Eye',where:'Stronghold',copy:'End Stone',shape:'eye'},
+ {id:'spire',name:'Spire',where:'End City',copy:'Purpur Block',shape:'spire'},
+ {id:'flow',name:'Flow',where:'Ominous Vault',copy:'Breeze Rod',shape:'flow'},
+ {id:'bolt',name:'Bolt',where:'Vault',copy:'Copper Block / Waxed Copper',shape:'bolt'}
+];
+const MATERIALS=[
+ {id:'iron',name:'Iron',color:'#aeb6b8',glow:'#d7e3e5'},{id:'copper',name:'Copper',color:'#b86d4f',glow:'#e2a079'},{id:'gold',name:'Gold',color:'#edc34a',glow:'#fff0a0'},
+ {id:'lapis',name:'Lapis',color:'#315ec5',glow:'#6f9cff'},{id:'emerald',name:'Emerald',color:'#3ac777',glow:'#93ffd1'},{id:'diamond',name:'Diamond',color:'#68e1db',glow:'#b8fff6'},
+ {id:'netherite',name:'Netherite',color:'#51454f',glow:'#9b879e'},{id:'redstone',name:'Redstone',color:'#d6372f',glow:'#ff7870'},{id:'amethyst',name:'Amethyst',color:'#a56ad7',glow:'#d8a8ff'},
+ {id:'quartz',name:'Quartz',color:'#f1e4d7',glow:'#fffaf2'},{id:'resin',name:'Resin',color:'#d66836',glow:'#ffad70'}
+];
+const ARMORS={
+ leather:{name:'Leather',light:'#9a6940',mid:'#674126',dark:'#3a2519'},chainmail:{name:'Chainmail',light:'#9ba0a4',mid:'#70757a',dark:'#43474b'},iron:{name:'Iron',light:'#c5c7c5',mid:'#898d8c',dark:'#525552'},gold:{name:'Gold',light:'#ffe36c',mid:'#d5ad36',dark:'#765914'},diamond:{name:'Diamond',light:'#9ceee8',mid:'#4dbab5',dark:'#266c6a'},netherite:{name:'Netherite',light:'#5b555c',mid:'#39343b',dark:'#1d1a1e'},copper:{name:'Copper',light:'#e59c79',mid:'#b86d4f',dark:'#71402f'},turtle:{name:'Turtle Shell',light:'#9a9e3d',mid:'#6b712b',dark:'#363a1a'}};
+const state={piece:'helmet',set:{helmet:{armor:'netherite',pattern:'silence',mat:'gold',enchanted:true},chestplate:{armor:'netherite',pattern:'silence',mat:'gold',enchanted:true},leggings:{armor:'netherite',pattern:'silence',mat:'gold',enchanted:true},boots:{armor:'netherite',pattern:'silence',mat:'gold',enchanted:true}},enchanted:true,yaw:-13,drag:false,lastX:0};
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+function motif(shape,stroke='currentColor'){const common=`stroke="${stroke}" fill="none" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"`; const map={sentry:'M6 8h36M10 15h28M17 22h14M8 26h32',vex:'M10 7l9 9-9 9M25 7l-9 9 9 9M31 7v18',wild:'M7 13h32M10 18l8 8M38 18l-8 8M16 8v24',coast:'M6 21h36M12 9l8 12-8 12M35 9l-8 12 8 12',dune:'M9 9l13 13L9 35M27 9l13 13-13 13M22 22h6',wayfinder:'M6 11h36M12 18h24M18 25h12M12 32h24',raiser:'M8 30l14-20 14 20M14 30h16M22 10v20',shaper:'M8 9h32v26H8zM16 17h16v10H16z',host:'M8 12h12v20H8zM28 12h12v20H28zM20 18h8',ward:'M10 8h28v28H10zM16 14h16v16H16z',silence:'M8 11h32M8 23h32M14 7v30M34 7v30',tide:'M6 12l10 8 10-8 10 8 6-5M8 25l9-7 9 7 9-7 7 5',snout:'M9 10h30v10H9zM16 20v13M32 20v13M22 10v23',rib:'M10 8v28M20 10v26M30 10v26M40 8v28M10 18h30M10 28h30',eye:'M7 22c8-15 30-15 38 0-8 15-30 15-38 0zM22 22a5 5 0 1 0 10 0 5 5 0 1 0-10 0',spire:'M8 9h32v28H8zM12 31l12-20 12 20M24 11v26',flow:'M8 27l7-14 7 14 7-14 7 14M12 20h24',bolt:'M8 9h32v28H8zM27 8l-8 14h7l-5 14'}; return `<svg viewBox="0 0 48 44" aria-hidden="true" ${common}><path d="${map[shape]||map.sentry}"/></svg>`}
+function renderPatterns(){const grid=$('#patternGrid');grid.innerHTML=PATTERNS.map(p=>`<button class="pattern ${p.id===state.set[state.piece].pattern?'selected':''}" data-pattern="${p.id}" data-tilt><div class="mini-motif">${motif(p.shape,'#d2ad63')}</div><strong>${p.name}</strong><span>${p.where}</span></button>`).join('');grid.querySelectorAll('.pattern').forEach(b=>b.onclick=()=>{state.set[state.piece].pattern=b.dataset.pattern;renderAll()})}
+function renderMaterials(){const grid=$('#matGrid'), current=state.set[state.piece];grid.innerHTML=MATERIALS.map(m=>`<button class="mat ${m.id===current.mat?'selected':''}" title="${m.name}" aria-label="${m.name}" data-mat="${m.id}" data-tilt style="background:${m.color}"></button>`).join('');grid.querySelectorAll('.mat').forEach(b=>b.onclick=()=>{state.set[state.piece].mat=b.dataset.mat;renderAll()})}
+function renderArmorSelect(){const sel=$('#armorSelect'), current=state.set[state.piece].armor; const opts=Object.entries(ARMORS).filter(([id])=>state.piece==='helmet'||id!=='turtle').map(([id,a])=>`<option value="${id}">${a.name}</option>`).join('');sel.innerHTML=opts;sel.value=current}
+function renderInfo(){const d=state.set[state.piece],p=PATTERNS.find(x=>x.id===d.pattern),m=MATERIALS.find(x=>x.id===d.mat),a=ARMORS[d.armor];$('#templateInfo').innerHTML=`<strong>${p.name} · ${m.name} trim · ${a.name} ${state.piece}</strong><p>Found in <b>${p.where}</b>. The smithing template sets the pattern; <b>${m.name}</b> supplies the trim colour. Copy the template with 7 diamonds plus ${p.copy}. Armor trims are cosmetic.</p>`}
+function applyCSS(part, d){const a=ARMORS[d.armor],m=MATERIALS.find(x=>x.id===d.mat),p=PATTERNS.find(x=>x.id===d.pattern);part.style.setProperty('--armor-light',a.light);part.style.setProperty('--armor-mid',a.mid);part.style.setProperty('--armor-dark',a.dark);part.style.setProperty('--trim',m.color);part.style.setProperty('--trim-glow',m.glow);part.querySelector('.motif').innerHTML=motif(p.shape,m.color);part.classList.toggle('enchanted',d.enchanted)}
+function renderMannequin(){ $$('.part[data-piece]').forEach(part=>{const k=part.dataset.piece, key=k.startsWith('helmet')?'helmet':k.startsWith('chestplate')?'chestplate':k.startsWith('leggings')?'leggings':'boots'; applyCSS(part,state.set[key])}); $('#setName').textContent=`${ARMORS[state.set.helmet.armor].name} · ${PATTERNS.find(x=>x.id===state.set.chestplate.pattern).name}bound`; $('#mannequin').style.transform=`rotateX(1deg) rotateY(${state.yaw}deg)`}
+function sync(){const d=state.set[state.piece];$('#armorSelect').value=d.armor;$('#enchantToggle').checked=d.enchanted;renderPatterns();renderMaterials();renderInfo();renderMannequin();$('#status').textContent=`Editing ${state.piece}`}
+function renderAll(){sync()}
+$('#pieceSelect').onchange=e=>{state.piece=e.target.value;sync()};$('#armorSelect').onchange=e=>{state.set[state.piece].armor=e.target.value;renderAll()};$('#enchantToggle').onchange=e=>{state.enchanted=e.target.checked;Object.values(state.set).forEach(v=>v.enchanted=state.enchanted);renderAll()};
+$('#applyAll').onclick=()=>{const d=state.set[state.piece];Object.keys(state.set).forEach(k=>{state.set[k].pattern=d.pattern;state.set[k].mat=d.mat;state.set[k].enchanted=d.enchanted});renderAll()};
+$('#clearTrim').onclick=()=>{const d=state.set[state.piece];d.pattern='sentry';d.mat='iron';d.enchanted=false;renderAll()};
+$('#randomize').onclick=()=>{const picks=[...PATTERNS],mats=[...MATERIALS],ars=Object.keys(ARMORS);Object.keys(state.set).forEach(k=>{state.set[k].armor=k==='helmet'&&Math.random()<.14?'turtle':ars[Math.floor(Math.random()*7)];state.set[k].pattern=picks[Math.floor(Math.random()*picks.length)].id;state.set[k].mat=mats[Math.floor(Math.random()*mats.length)].id;state.set[k].enchanted=Math.random()<.55});sync()};
+$('#spinLeft').onclick=()=>{state.yaw-=14;renderMannequin()};$('#spinRight').onclick=()=>{state.yaw+=14;renderMannequin()};$('#resetView').onclick=()=>{state.yaw=-13;renderMannequin()};
+const man=$('#mannequin');let drag=false,x=0;man.addEventListener('pointerdown',e=>{drag=true;x=e.clientX;man.setPointerCapture(e.pointerId)});man.addEventListener('pointermove',e=>{if(!drag)return;state.yaw+=(e.clientX-x)*.55;x=e.clientX;renderMannequin()});man.addEventListener('pointerup',()=>drag=false);man.addEventListener('pointercancel',()=>drag=false);
+sync();
+</script>
+<script src="../../shared/tilt.js"></script>
+</body></html>
